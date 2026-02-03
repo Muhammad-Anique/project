@@ -1,0 +1,64 @@
+{
+  "name": "fitness360-gym",
+  "version": "1.0.0",
+  "description": "Fitness360 Gym - A modern static website showcasing gym services and facilities with responsive design and member engagement features",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve . -s",
+    "dev": "npx live-server --port=3000 --host=localhost",
+    "build": "npm run optimize:images && npm run minify:css && npm run minify:js",
+    "test": "npm run test:lighthouse && npm run test:accessibility",
+    "test:lighthouse": "npx lighthouse http://localhost:3000 --output=html --output-path=./reports/lighthouse.html",
+    "test:accessibility": "npx axe-cli http://localhost:3000",
+    "optimize:images": "npx imagemin images/**/*.{jpg,png,svg} --out-dir=assets/images/optimized",
+    "minify:css": "npx clean-css-cli css/*.css -o assets/css/style.min.css",
+    "minify:js": "npx terser js/*.js -o assets/js/main.min.js --compress --mangle",
+    "format": "npx prettier --write \"**/*.{html,css,js,md}\"",
+    "lint:css": "npx stylelint \"css/**/*.css\"",
+    "lint:js": "npx eslint \"js/**/*.js\"",
+    "validate:html": "npx html-validate \"*.html\" \"pages/*.html\"",
+    "deploy": "npm run build && npx vercel --prod",
+    "preview": "npm run build && npx serve dist -s"
+  },
+  "keywords": [
+    "fitness",
+    "gym",
+    "health",
+    "website",
+    "static",
+    "responsive",
+    "html",
+    "css",
+    "javascript"
+  ],
+  "author": "Muhammad Anique",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Muhammad-Anique/project.git"
+  },
+  "homepage": "https://fitness360gym.com",
+  "devDependencies": {
+    "@axe-core/cli": "^4.8.2",
+    "clean-css-cli": "^5.6.2",
+    "eslint": "^8.56.0",
+    "html-validate": "^8.7.4",
+    "imagemin": "^8.0.1",
+    "imagemin-cli": "^7.0.0",
+    "lighthouse": "^11.4.0",
+    "live-server": "^1.2.2",
+    "prettier": "^3.1.1",
+    "serve": "^14.2.1",
+    "stylelint": "^16.1.0",
+    "terser": "^5.26.0"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "> 1%",
+    "not dead"
+  ],
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  }
+}
